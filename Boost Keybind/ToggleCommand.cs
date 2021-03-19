@@ -18,6 +18,7 @@ namespace Boost_Keybind
         {
             Global.togglemode = !Global.togglemode;
             Global.CurrentToggle = false;
+            PLXMLOptionsIO.Instance.CurrentOptions.SetStringValue("BoostToggleMode", Global.togglemode.ToString());
             string s = Global.togglemode ? "Enabled" : "Disabled";
             PulsarPluginLoader.Utilities.Messaging.Notification($"Togglemode {s}");
             return false;
@@ -31,6 +32,17 @@ namespace Boost_Keybind
         public string UsageExample()
         {
             return $"/{CommandAliases()[0]}";
+        }
+    }
+    [HarmonyLib.HarmonyPatch(typeof(PLServer), "Start")]
+    class LoadSetting
+    {
+        static void Postfix ()
+        {
+            if(bool.TryParse(PLXMLOptionsIO.Instance.CurrentOptions.GetStringValue("BoostToggleMode"), out bool result))
+            {
+                Global.togglemode = result;
+            }
         }
     }
 }
