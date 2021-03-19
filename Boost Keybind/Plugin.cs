@@ -4,7 +4,7 @@ namespace Boost_Keybind
 {
     public class Plugin : PulsarPlugin
     {
-        public override string Version => "0.1.0";
+        public override string Version => "0.2.0";
 
         public override string Author => "Dragon";
 
