@@ -22,10 +22,5 @@ namespace Boost_Keybind
             string s = Global.togglemode ? "Enabled" : "Disabled";
             PulsarModLoader.Utilities.Messaging.Notification($"Togglemode {s}");
         }
-
-        public string UsageExample()
-        {
-            return $"/{CommandAliases()[0]}";
-        }
     }
 }
